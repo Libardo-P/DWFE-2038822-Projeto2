@@ -4,6 +4,7 @@ import { Header } from './components/Header'
 import { CategoryBar } from './components/CategoryBar'
 import { CardGrid } from './components/CardGrid'
 import { Pagination } from './components/Pagination'
+import { LoginForm } from './components/LoginForm'
 import type { Item, Category } from './types'
 
 export default function App() {
@@ -13,15 +14,40 @@ export default function App() {
   const [page, setPage]             = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading]       = useState(false)
+  const [showLogin, setShowLogin]   = useState(false)
   const perPage = 12
 
   useEffect(() => {
+    // futuro fetch de items
   }, [searchTerm, category, page])
+
+  if (showLogin) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 relative">
+        <LoginForm
+          onSubmit={(email, password, remember) => {
+            console.log('Login:', { email, password, remember })
+            setShowLogin(false)
+          }}
+        />
+        <button
+          onClick={() => setShowLogin(false)}
+          className="absolute top-4 right-4 text-gray-500 text-2xl hover:text-gray-700"
+          aria-label="Fechar login"
+        >
+          ✕
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Header global */}
-      <Header onSearch={setSearchTerm} />
+      <Header
+        onSearch={setSearchTerm}
+        onLoginClick={() => setShowLogin(true)}
+      />
 
       {/* Barra de categorias reduzida */}
       <CategoryBar
@@ -65,5 +91,3 @@ export default function App() {
     </div>
   )
 }
-
-

@@ -87,7 +87,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         Entrar
       </button>
 
-      <div className="mt-6 text-center text-sm text-gray-500">
+      {/* <div className="mt-6 text-center text-sm text-gray-500">
         Ou entra com
       </div>
       <div className="mt-3 flex justify-center gap-2">
@@ -100,7 +100,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         <button type="button" className="px-4 py-2 border rounded">
           GitHub
         </button>
-      </div>
+      </div> */}
     </form>
   )
 }
